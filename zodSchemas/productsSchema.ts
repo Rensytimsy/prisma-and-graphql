@@ -1,9 +1,9 @@
-import {object, string} from "zod";
+import {number, object, string} from "zod";
 
 
 export const productSchema = object({
     name: string(),
-    price: string(),
+    price: number(),
     description: string(),
     image: string()
 })

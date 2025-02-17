@@ -17,7 +17,7 @@ const newProduct = new Schema<z.infer<typeof productSchema>>({
         required: true
     },
     price: {
-        type: String,
+        type: Number,
         required: true
     },
     image: {
