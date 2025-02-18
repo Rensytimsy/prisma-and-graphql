@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SideNavigation from "./pages/sideNavigationBar";
+import { ApolloProvider } from "@apollo/client";
+import client from "@/lib/apolloClient";
+import Provider from "./Provider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,15 +27,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="flex">
-          <SideNavigation />
-        {children}
-        </div>
-      </body>
-    </html>
+    <Provider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <div className="flex">
+            <div className="fixed">
+              <SideNavigation />
+            </div>
+            <div className="w-full ml-[3%]">{children}</div>
+          </div>
+        </body>
+      </html>
+    </Provider>
   );
 }
